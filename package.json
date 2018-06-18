@@ -1,0 +1,37 @@
+{
+  "name": "drone-cafe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maksim-maslov/nd-dp.git"
+  },
+  "author": "mm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maksim-maslov/nd-dp/issues"
+  },
+  "homepage": "https://github.com/maksim-maslov/nd-dp#readme",
+  "dependencies": {
+    "angular": "^1.6.9",
+    "angular-route": "^1.7.2",
+    "express.js": "^1.0.0",
+    "http": "0.0.0",
+    "jquery": "^3.3.1",
+    "materialize-css": "^0.100.2",
+    "mongodb": "^2.2.19",
+    "netology-fake-drone-api": "^1.0.1",
+    "save-dev": "^2.0.0",
+    "socket.io": "^2.1.1",
+	"mongoose": "^4.13.9"
+  },
+  "engines": {
+    "node": "9.8.0",
+    "npm": "6.0.0"
+  }
+}

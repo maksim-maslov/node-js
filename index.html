@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="./node_modules/materialize-css/dist/css/materialize.css"/>    
+
+    <script src="./node_modules/angular/angular.js"></script>
+    <script src="./node_modules/angular-route/angular-route.js"></script>
+
+    <style>
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {        
+        font: Arial, sans-serif; 
+        background-color: #fffde7;
+        color: #333333;      
+      }  
+
+      a {
+        color: #333333;
+      }
+
+      .card-image .card-title {
+        text-shadow: 1px 1px 2px black;
+      }
+
+      .card.small {
+        height: 335px;
+      }
+
+      .card.small .card-image {
+        max-height: 180px;
+      }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <h4 class="card-panel orange lighten-2">
+      <strong><a href="#">Drone Cafe</a></strong>
+    </h4>
+
+    <ng-view></ng-view>
+
+    <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>
+    <script src="./node_modules/materialize-css/dist/js/materialize.js"></script>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+
+    <script src="./app/src/app.js"></script>
+    <script src="./app/src/Cook/CookCtrl.js"></script>
+    <script src="./app/src/Cook/CookService.js"></script>
+    <script src="./app/src/Client/ClientCtrl.js"></script>
+    <script src="./app/src/Client/ClientService.js"></script>    
+
+  </body>
+
+</html>
