@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+body {        
+  font: Arial, sans-serif; 
+  background-color: #fffde7;
+  color: #333333;      
+}  
+
+a {
+  color: #333333;
+}
+
+.card.small {
+  height: 335px;
+}
+
+.card.small .card-image {
+  max-height: 180px;
+}
+
+.row.header {
+  padding: 20px;
+  margin-top: 0;
+}
+
+.row.list__title {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+.row.list__item {
+  padding: 20px;
+  border-radius: 2px;
+}
+
+.col.list-item__text {        
+  margin-bottom: 10px; 
+  padding: 0;
+}

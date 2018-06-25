@@ -1,55 +1,59 @@
 <div class="container">
+
   <div class="row" data-ng-if="!isLogin">
     <form name="loginForm" class="col s4 offset-s4">
-    <div class="row">
-      <div class="input-field col s8 offset-s2">
-      <input type="text" class="validate" placeholder="Name" data-ng-model="newUser.name" required>
-      <input type="email" class="validate" placeholder="Email" data-ng-model="newUser.email" required>
-      <button class="btn waves-effect waves-light col s8 offset-s2 orange darken-4" type="submit" data-ng-click="login(newUser)">Log in</button>
-      </div>   
-    </div>
+      <div class="row">
+        <div class="input-field col s8 offset-s2">
+          <input type="text" class="validate" placeholder="Name" data-ng-model="newUser.name" required>
+          <input type="email" class="validate" placeholder="Email" data-ng-model="newUser.email" required>
+          <button class="btn waves-effect waves-light col s8 offset-s2 orange darken-4" type="submit" data-ng-click="login(newUser)">Log in</button>
+        </div>   
+      </div>
     </form>
   </div>    
 </div>
+
 <div class="container" data-ng-if="isLogin">
   <div class="row">
-    <div class="col s6">
-    <h4 class="row">Account</h4>
-    <h5 class="row">{{ user.name }}</h5>
-    <h5 class="row">{{ user.balance }} galactic credit</h5>
-    <div class="row">
-      <button class="btn waves-effect waves-light col s5 orange darken-4" type="submit" data-ng-click="depositeAccount()">Deposit Account</button>
-    </div>
-    </div> 
-    <div class="col s6"> 
-    <h4 class="row">Orders</h4>  
-    <div class="row card-panel orange lighten-4" data-ng-repeat="dish in userOrders">
-      <div class="col s8 orange lighten-4">{{ dish.dishName }}</div>
-      <div class="col s3 offset-s1 orange lighten-4 text-darken-2">{{ dish.status }}</div>
-    </div>    
-    <div class="row">
-      <button class="btn waves-effect waves-light col s4 orange darken-4" type="submit" data-ng-click="showDishes()">Add Dishes</button>
-    </div>     
+    <div class="col s3">
+      <h4 class="row list__title">Account</h4>
+      <h5 class="row">{{ user.name }}</h5>
+      <h5 class="row">{{ user.balance }} galactic credit</h5>
+      <div class="row">
+        <button class="btn waves-effect waves-light col s10 orange darken-4" type="submit" data-ng-click="depositeAccount()">Deposit account</button>
+      </div>
+      </div> 
+      <div class="col s8 offset-s1"> 
+      <h4 class="row list__title">Orders</h4>  
+      <div class="row orange lighten-4 list__item" data-ng-repeat="dish in userOrders">
+        <h5 class="col s8 orange lighten-4">{{ dish.dishName }}</h5>
+        <h5 class="col s3 offset-s1 orange lighten-4 orange-text text-darken-2">{{ dish.status }}</h5>
+      </div>    
+      <div class="row">
+        <button class="btn waves-effect waves-light col s4 orange darken-4" type="submit" data-ng-click="showDishes()">Add dishes</button>
+      </div>     
     </div>     
   </div>
+
   <div class="row">  
     <div class="row">
-    <div class="col s4" data-ng-repeat="dish in dishes">
-      <div class="card small hoverable">
-      <div class="card-image">
-        <img data-ng-src="{{ dish.image }}">
-        <span class="card-title">{{ dish.title }}</span>
+      <div class="col s4" data-ng-repeat="dish in dishes">
+        <div class="card small">
+        <div class="card-image">
+          <img data-ng-src="{{ dish.image }}">
+          <span class="card-title">{{ dish.title }}</span>
+        </div>
+        <div class="card-content">
+          <p><strong>Rating: </strong>{{ dish.rating }}</p>
+          <p><strong>Price: </strong>{{ dish.price }} galactic credits</p>
+        </div>
+        <div class="card-action">
+          <button class="waves-effect waves-light btn orange darken-4" data-ng-if="dish.price <= user.balance" data-ng-click="addDish(dish._id, dish.title, dish.price)">Add to order</button>
+          <div class="add-message red-text" data-ng-if="dish.price > user.balance">Add {{ dish.price - user.balance }} galactic credits to balance</div>
+        </div>
+        </div>
       </div>
-      <div class="card-content">
-        <p><strong>Rating:</strong>{{ dish.rating }}</p>
-        <p><strong>Price:</strong>{{ dish.price }} galactic credits</p>
-      </div>
-      <div class="card-action">
-        <button class="waves-effect waves-light btn orange darken-4" data-ng-if="dish.price <= user.balance" data-ng-click="addDish(dish._id, dish.title, dish.price)">Add to order</button>
-        <div class="add-message red-text" data-ng-if="dish.price > user.balance">Add {{ dish.price - user.balance }} galactic credits to balance</div>
-      </div>
-      </div>
-    </div>
     </div>
   </div>
+
 </div>

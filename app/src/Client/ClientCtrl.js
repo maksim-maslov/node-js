@@ -7,79 +7,104 @@ angular
   $scope.isLogin = false;
   $scope.isShowDishes = false;
   $scope.dishes = [];
-  let socket = io();
+  const socket = io();
 
   $scope.login = function(user) {
+
     $scope.isLogin = true;
 
     $scope.user = user;
 
-    ClientService.getUser($scope.user).then(function(data) {
+    ClientService.getUser($scope.user).then(data => {
 
-      if (data.data.length == 0) {
-      $scope.user.balance = 100;
+      if (data.data.length) {
 
-      ClientService.createUser($scope.user).then(function(data) {
-        $scope.user = data.data;
-      });
+        $scope.user = data.data[0];
+
+        ClientService.getOrders($scope.user._id).then(data => {
+
+          if (data.data.length) {
+            $scope.userOrders = data.data;
+          };
+
+        });
+
       } else {
-      $scope.user = data.data[0];
 
-      ClientService.getOrders($scope.user._id).then(function(data) {
-        if (data.data.length) {
-          $scope.userOrders = data.data;
-        };
-      });
+        $scope.user.balance = 100;
+
+        ClientService.createUser($scope.user).then(data => $scope.user = data.data);
+        
       }
+
     });
   };
 
   $scope.depositeAccount = function() {
-  $scope.user.balance = $scope.user.balance + 100;
 
-  ClientService.updateBalance($scope.user._id, $scope.user.balance).then(function(data) {});
+    $scope.user.balance = $scope.user.balance + 100;
+
+    ClientService.updateBalance($scope.user._id, $scope.user.balance).then(data => {});
+
   };
 
   $scope.showDishes = function() {
-  $scope.isShowDishes = true;
 
-  ClientService.getDishes().then(function(data) {
-    $scope.dishes = data.data;
-  });
+    $scope.isShowDishes = true;
+
+    ClientService.getDishes().then(data => $scope.dishes = data.data);
+
   };
 
   $scope.addDish = function(id, title, price) {
-  $scope.user.balance = $scope.user.balance - price;
 
-  ClientService.updateBalance($scope.user._id, $scope.user.balance).then(function(data) {});
+    $scope.user.balance = $scope.user.balance - price;
 
-  ClientService.createOrder($scope.user._id, id).then(function(data) {});
+    ClientService.updateBalance($scope.user._id, $scope.user.balance).then(data => {});
+
+    ClientService.createOrder($scope.user._id, id).then(data => {});
+
   }; 
 
 
-  socket.on('createOrder', function(){
-  ClientService.getOrders($scope.user._id).then(function(data) {
-    if(data.data.length !== undefined) {
-    $scope.userOrders = data.data;
-    };
-  });
-  });
+  socket.on('createOrder', () => {
 
+    ClientService.getOrders($scope.user._id).then(data => {
+
+      if (data.data.length) {
+        $scope.userOrders = data.data;
+      }
+
+    });
+
+  });
   
 
-  socket.on('changeStatus', function(order) {
-  for (let c = 0; c < $scope.userOrders.length; c++) {
-    if ($scope.userOrders[c]._id == order._id) {
-    $scope.userOrders[c].status = order.status;
-    $scope.$apply();
-    break;
-    }
-  };
+  socket.on('changeStatus', order => {
+
+    // $scope.userOrders.forEach(el => {
+    //   if (el._id == order._id) {
+    //     el.status = order.status;
+    //     $scope.$apply();         
+    //   }
+    // });  
+
+
+    for (let c = 0; c < $scope.userOrders.length; c++) {
+      if ($scope.userOrders[c]._id == order._id) {
+        $scope.userOrders[c].status = order.status;
+        $scope.$apply();
+        break;
+      }
+    };
+    
   });
 
-  socket.on('errorConnect', function() {
-  console.log('Disconnected from server');
-  socket.disconnect();
+  socket.on('connect_error', () => {
+
+    console.log('Disconnected from server');
+    socket.disconnect();
+
   });
 
 });

@@ -7,17 +7,21 @@ angular
   return {
 
     getUser: function(user) {
-      let config = {
+
+      const config = {
         params: {
           name: user.name,
           email: user.email
         }
       };
+
       return $http.get('/api/clients', config);
+
     },
 
     createUser: function(user) {
-      let userData = {
+
+      const userData = {
         name: user.name,
         email: user.email
       };
@@ -27,10 +31,12 @@ angular
         url: '/api/clients',
         data: userData
       });
+
     },
 
     updateBalance: function(userid, newbalance) {
-      let userData = {
+
+      const userData = {
         balance: newbalance
       };
 
@@ -39,15 +45,19 @@ angular
         url: '/api/clients/' + userid,
         data: userData
       });
+
     },
 
     getOrders: function(userid) {
-      let config = {
+
+      const config = {
         params: {
           userId: userid
         }
       };
+
       return $http.get('/api/orders', config);
+
     },
 
     getDishes: function() {
@@ -55,7 +65,8 @@ angular
     },
 
     createOrder: function(userid, dishid) {
-      let orderData = {
+      
+      const orderData = {
         userId: userid,
         dishId: dishid
       };
@@ -65,10 +76,12 @@ angular
         url: '/api/orders',
         data: orderData
       });
+
     },
 
     updateStatus: function(orderid, newStatus) {
-      let orderData = {
+
+      const orderData = {
         status: newStatus
       };
 
@@ -77,6 +90,7 @@ angular
         url: '/api/orders/' + orderid,
         data: orderData
       });
+      
     }
   }
   
