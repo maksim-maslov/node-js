@@ -6,7 +6,7 @@ angular
     
     return {
   
-      getDishes: function(dishStatus) {
+      getOrders: function(dishStatus) {
 
           const config = {
               params: {
@@ -28,6 +28,18 @@ angular
               url: '/api/orders/' + orderid,
               data: orderData
           });
+      },
+
+      deleteOrder: function(orderid){
+        let orderData = {
+            orderId: orderid
+        };
+
+        return $http({
+            method: 'DELETE',
+            url: '/api/orders/' + orderid,
+            data: orderData
+        });
       }
 
     }

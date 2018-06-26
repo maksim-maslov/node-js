@@ -6,9 +6,9 @@ angular
 
     const socket = io();
   
-    CookService.getDishes('Ordered').then(data => $scope.orderedDishes = data.data);
+    CookService.getOrders('Ordered').then(data => $scope.orderedDishes = data.data);
   
-    CookService.getDishes('Cooking').then(data => $scope.cookingDishes = data.data);
+    CookService.getOrders('Cooking').then(data => $scope.cookingDishes = data.data);
   
   
     $scope.startCooking = function(order, orderIndex) {
@@ -30,13 +30,27 @@ angular
   
       socket.emit('changeStatus', order);
   
-      CookService.updateStatus(order._id, 'Delivery').then(data => {});
+      CookService.updateStatus(order._id, 'Delivery').then(data => {
+        
+        if (data.data.message == 'Order updated') {
+          setTimeout(() => CookService.deleteOrder(order._id), 120000);
+        }
+
+      });
 
     };
+
+    socket.on('deleteOrder', () => {
+
+      CookService.getOrders('Ordered').then(data => $scope.orderedDishes = data.data);
+  
+      CookService.getOrders('Cooking').then(data => $scope.cookingDishes = data.data);       
+  
+    });
   
     socket.on('createOrder', () => {
   
-      CookService.getDishes('Ordered').then(data => {
+      CookService.getOrders('Ordered').then(data => {
 
         if (data.data.length) {
           $scope.orderedDishes = data.data;

@@ -4,33 +4,19 @@ const Client = require('./models/client');
 const Dish = require('./models/dish');
 const Order = require('./models/order');
 
-// const express = require('express');
-// const app = express();
-
-// const http = require('http');
-// const io = require('socket.io');
-// const server = http.Server(app);
-// const socketIO = io(server);
-
+const server = require('./server');
 
 const drone = require('netology-fake-drone-api');
 
 const mongoose = require('mongoose');
 
-let env = process.env.ENV_NODE = process.env.ENV_NODE || 'development';
+const env = process.env.ENV_NODE = process.env.ENV_NODE || 'development';
 
-let url = null;
-if (env === 'development') {
-  url = 'mongodb://localhost:27017/Drone-Cafe';
-} else {
-  url = 'mongodb://dbtest:dbtest1@ds263670.mlab.com:63670/drone-cafe';
-}
-
-url = 'mongodb://dbtest:dbtest1@ds263670.mlab.com:63670/drone-cafe';
+const url = env === 'development'
+? 'mongodb://localhost:27017/Drone-Cafe'
+: 'mongodb://dbtest:dbtest1@ds263670.mlab.com:63670/drone-cafe';
 
 const Schema = mongoose.Schema;
-
-
 
 const model = {Client, Dish, Order};
 
@@ -174,9 +160,7 @@ exports.getOrders = function(req, res) {
 }
 
 
-exports.createOrder = function(req, res, next, socketIO) {
-
-  console.log(socketIO);
+exports.createOrder = function(req, res) {
 
   const newOrder = new model.Order();
   
@@ -189,9 +173,9 @@ exports.createOrder = function(req, res, next, socketIO) {
     if (err) {
       res.send(err);
     } else {
-      res.json({ message: 'Order created!' });
+      res.json({ message: 'Order created' });
 
-      socketIO.emit('createOrder');
+      server.socketIO.emit('createOrder');
     }
 
   });
@@ -213,12 +197,10 @@ exports.updateOrder = function(req, res) {
 
         if (err) {
           res.send(err);
-        } else {
-
-          res.json({ message: 'Order updated!' });
+        } else {          
 
           if (order.status == 'Ordered') {
-            socketIO.emit('createOrder');
+            server.socketIO.emit('createOrder');
           };
 
           if (order.status == 'Delivery') {
@@ -234,7 +216,7 @@ exports.updateOrder = function(req, res) {
                   if (err) {
                     console.log(err);
                   } else {
-                    socketIO.emit('changeStatus', order);
+                    server.socketIO.emit('changeStatus', order);
                   }
                 });
 
@@ -248,11 +230,14 @@ exports.updateOrder = function(req, res) {
                   if (err) {
                     console.log(err);
                   } else {
-                    socketIO.emit('changeStatus', order);
+                    server.socketIO.emit('changeStatus', order);
                   }
                 });
 
               });
+
+            res.json({ message: 'Order updated' });
+
           }
         }
       });
@@ -263,15 +248,17 @@ exports.updateOrder = function(req, res) {
 
 exports.deleteOrder = function(req, res) {
 
-  model.Order.remove({_id: req.params.orderId}, (err, order) => {
+  model.Order.findByIdAndRemove(req.params.order_id, (err, order) => {
 
     if (err) {
       res.send(err);
     } else {
-      res.json({ message: 'Order deleted' });
+      res.json({ message: 'Order deleted' }); 
+      server.socketIO.emit('deleteOrder');
     }
 
   });
+
 }
 
 

@@ -1,28 +1,26 @@
-<!-- <div class="page"> -->
-    <div class="container">      
-      <div class="row">
-        <div class="col s5">
-            <h4 class="row list__title">Ordered</h4>
-            <div class="row orange lighten-4 list__item"  data-ng-repeat="order in orderedDishes">
-                <div>
-                    <h5 class="col s12 orange lighten-4 list-item__text">{{ order.dishName }}</h5>                       
-                </div>                
-                <div>
-                    <button class="btn waves-effect waves-light col s6 orange darken-4 right-align" data-ng-click="startCooking(order, $index)">Start cooking</button>
-                </div>            
-            </div> 
-        </div> 
-        <div class="col s5 offset-s1"> 
-            <h4 class="row list__title">Cooking</h4> 
-            <div class="row orange lighten-4 list__item" data-ng-repeat="order in cookingDishes">
-                <div>
-                    <h5 class="col s12 orange lighten-4 list-item__text">{{ order.dishName }}</h5>                       
-                </div>
-                <div>
-                    <button class="btn waves-effect waves-light col s4 orange darken-4 right-align" data-ng-click="finishCooking(order, $index)">Done</button>
-                </div>
+<div class="container">      
+    <div class="row">
+    <div class="col s5">
+        <h4 class="row list__title">Ordered</h4>
+        <div class="row orange lighten-4 list__item"  data-ng-repeat="order in orderedDishes">
+            <div>
+                <h5 class="col s12 orange lighten-4 list-item__text">{{ order.dishName }}</h5>                       
+            </div>                
+            <div>
+                <button class="btn waves-effect waves-light col s6 orange darken-4 right-align" data-ng-click="startCooking(order, $index)">Start cooking</button>
             </div>            
-        </div>     
-      </div>      
-    </div>  
-  <!-- </div> -->
+        </div> 
+    </div> 
+    <div class="col s5 offset-s1"> 
+        <h4 class="row list__title">Cooking</h4> 
+        <div class="row orange lighten-4 list__item" data-ng-repeat="order in cookingDishes">
+            <div>
+                <h5 class="col s12 orange lighten-4 list-item__text">{{ order.dishName }}</h5>                       
+            </div>
+            <div>
+                <button class="btn waves-effect waves-light col s4 orange darken-4 right-align" data-ng-click="finishCooking(order, $index)">Done</button>
+            </div>
+        </div>            
+    </div>     
+    </div>      
+</div>  

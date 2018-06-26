@@ -7,6 +7,7 @@ angular
   $scope.isLogin = false;
   $scope.isShowDishes = false;
   $scope.dishes = [];
+  $scope.userOrders = [];
   const socket = io();
 
   $scope.login = function(user) {
@@ -78,25 +79,27 @@ angular
     });
 
   });
+
+  socket.on('deleteOrder', () => {
   
+    ClientService.getOrders($scope.user._id).then(data => {
 
-  socket.on('changeStatus', order => {
-
-    // $scope.userOrders.forEach(el => {
-    //   if (el._id == order._id) {
-    //     el.status = order.status;
-    //     $scope.$apply();         
-    //   }
-    // });  
-
-
-    for (let c = 0; c < $scope.userOrders.length; c++) {
-      if ($scope.userOrders[c]._id == order._id) {
-        $scope.userOrders[c].status = order.status;
-        $scope.$apply();
-        break;
+      if (data.data.length) {
+        $scope.userOrders = data.data;
       }
-    };
+
+    });
+
+  });  
+
+  socket.on('changeStatus', order => {    
+
+    $scope.userOrders.forEach(el => {
+      if (el._id == order._id) {
+        el.status = order.status;
+        $scope.$apply();         
+      }
+    });
     
   });
 
