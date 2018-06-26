@@ -12,9 +12,11 @@ const mongoose = require('mongoose');
 
 const env = process.env.ENV_NODE = process.env.ENV_NODE || 'development';
 
-const url = env === 'development'
-? 'mongodb://localhost:27017/Drone-Cafe'
-: 'mongodb://dbtest:dbtest1@ds263670.mlab.com:63670/drone-cafe';
+// const url = env === 'development'
+// ? 'mongodb://localhost:27017/Drone-Cafe'
+// : 'mongodb://dbtest:dbtest1@ds263670.mlab.com:63670/drone-cafe';
+
+const url = 'mongodb://dbtest:dbtest1@ds263670.mlab.com:63670/drone-cafe';
 
 const Schema = mongoose.Schema;
 
