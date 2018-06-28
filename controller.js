@@ -37,6 +37,9 @@ mongoose.connect(url, dbConnectionOptions, (err, database) => {
 });
 
 
+// Находит клиента по имени и email 
+//
+
 exports.getClient = function(req, res) {
 
   const searchQuery = {};
@@ -62,6 +65,9 @@ exports.getClient = function(req, res) {
 }
 
 
+// Создает клиента
+//
+
 exports.createClient = function(req, res) {
 
   const newClient = new model.Client();
@@ -81,6 +87,9 @@ exports.createClient = function(req, res) {
 
 }
 
+
+// Обновляет баланс клиента
+//
 
 exports.updateClient = function(req, res) {
 
@@ -108,6 +117,9 @@ exports.updateClient = function(req, res) {
 
 }
 
+
+// Получает список заказов
+//
 
 exports.getOrders = function(req, res) {
 
@@ -162,6 +174,9 @@ exports.getOrders = function(req, res) {
 }
 
 
+// Создает заказ
+//
+
 exports.createOrder = function(req, res) {
 
   const newOrder = new model.Order();
@@ -184,6 +199,9 @@ exports.createOrder = function(req, res) {
 
 }
 
+
+// Обновляет статус заказа
+//
 
 exports.updateOrder = function(req, res) {
     
@@ -248,6 +266,9 @@ exports.updateOrder = function(req, res) {
 }
 
 
+// Удаляет заказ
+//
+
 exports.deleteOrder = function(req, res) {
 
   model.Order.findByIdAndRemove(req.params.order_id, (err, order) => {
@@ -263,6 +284,9 @@ exports.deleteOrder = function(req, res) {
 
 }
 
+
+// Получает список блюд
+//
 
 exports.getDishes = function(req, res) {
 
