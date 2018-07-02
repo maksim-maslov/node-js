@@ -23,7 +23,7 @@ Kitchen: [http://aqueous-forest-93594.herokuapp.com/#!/kitchen](http://aqueous-f
     npm install
     mongoimport --db DroneCafe --collection dishes --file menu.json --jsonArray
     npm start
-    http://localhost:3000
+    http://localhost:3002
 ```
 
 ### run tests
