@@ -52,6 +52,9 @@ server.js               --> файл сервера
 controller.js           --> контроллер
 route.js                --> роуты
 realtime.js             --> сокеты
+db.js                   --> настройки содинения с БД
+menu.json               --> меню со списком доступных блюд
+protractor.conf.js      --> настройки для тестов
 models/                 --> модели БД
 test/                   --> тесты
 node_modules/           --> npm пакеты
