@@ -3,20 +3,13 @@
 const Client = require('./models/client');
 const Dish = require('./models/dish');
 const Order = require('./models/order');
+const dbConfig = require('./db');
 
 const server = require('./server');
 
 const drone = require('netology-fake-drone-api');
 
 const mongoose = require('mongoose');
-
-const env = process.env.ENV_NODE = process.env.ENV_NODE || 'development';
-
-// const url = env === 'development'
-// ? 'mongodb://localhost:27017/Drone-Cafe'
-// : 'mongodb://dbtest:dbtest1@ds263670.mlab.com:63670/drone-cafe';
-
-const url = 'mongodb://dbtest:dbtest1@ds263670.mlab.com:63670/drone-cafe';
 
 const Schema = mongoose.Schema;
 
@@ -26,7 +19,7 @@ const dbConnectionOptions = { keepAlive: true, socketTimeoutMS: 0 };
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(url, dbConnectionOptions, (err, database) => {
+mongoose.connect(dbConfig.url, dbConnectionOptions, (err, database) => {
 
   if (err) {
     console.log('Unable to connect to MongoDB server. Error: ', error);
@@ -36,6 +29,17 @@ mongoose.connect(url, dbConnectionOptions, (err, database) => {
   
 });
 
+
+// Отправляет код статуса 200
+//
+exports.openStartPage = function(req, res) {
+  res.status(200);  
+}
+
+
+
+// Находит клиента по имени и email 
+//
 
 exports.getClient = function(req, res) {
 
@@ -62,6 +66,9 @@ exports.getClient = function(req, res) {
 }
 
 
+// Создает клиента
+//
+
 exports.createClient = function(req, res) {
 
   const newClient = new model.Client();
@@ -81,6 +88,9 @@ exports.createClient = function(req, res) {
 
 }
 
+
+// Обновляет баланс клиента
+//
 
 exports.updateClient = function(req, res) {
 
@@ -108,6 +118,9 @@ exports.updateClient = function(req, res) {
 
 }
 
+
+// Получает список заказов
+//
 
 exports.getOrders = function(req, res) {
 
@@ -162,6 +175,9 @@ exports.getOrders = function(req, res) {
 }
 
 
+// Создает заказ
+//
+
 exports.createOrder = function(req, res) {
 
   const newOrder = new model.Order();
@@ -184,6 +200,9 @@ exports.createOrder = function(req, res) {
 
 }
 
+
+// Обновляет статус заказа
+//
 
 exports.updateOrder = function(req, res) {
     
@@ -248,6 +267,9 @@ exports.updateOrder = function(req, res) {
 }
 
 
+// Удаляет заказ
+//
+
 exports.deleteOrder = function(req, res) {
 
   model.Order.findByIdAndRemove(req.params.order_id, (err, order) => {
@@ -255,6 +277,7 @@ exports.deleteOrder = function(req, res) {
     if (err) {
       res.send(err);
     } else {
+      console.log('Удалено');
       res.json({ message: 'Order deleted' }); 
       server.socketIO.emit('deleteOrder');
     }
@@ -263,6 +286,9 @@ exports.deleteOrder = function(req, res) {
 
 }
 
+
+// Получает список блюд
+//
 
 exports.getDishes = function(req, res) {
 

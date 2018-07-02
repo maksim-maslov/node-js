@@ -14,6 +14,8 @@ module.exports = function(app) {
 
   app.use(express.static(__dirname + '/'));
 
+  router.get('/', controller.openStartPage);
+
   router.route('/clients')
     .get(controller.getClient)
     .post(controller.createClient);

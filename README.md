@@ -4,11 +4,39 @@
 
 Система автоматизации ресторана в рамках итоговой работы по курсу "Node, AngularJS и MongoDB: разработка полноценных веб-приложений".
 
-## Ссылка на рабочую версию
+### Ссылки на рабочую версию
 
 Client: [http://aqueous-forest-93594.herokuapp.com/#!/](http://aqueous-forest-93594.herokuapp.com/#!/)
-
 Kitchen: [http://aqueous-forest-93594.herokuapp.com/#!/kitchen](http://aqueous-forest-93594.herokuapp.com/#!/kitchen)
+
+### preinstall
+
+```
+    install and run MongoDB
+```
+
+### install
+
+```
+    git clone https://github.com/maksim-maslov/nd-dp 
+    cd nd-dp
+    npm install
+    mongoimport --db DroneCafe --collection dishes --file menu.json --jsonArray
+    npm start
+    http://localhost:3000
+```
+
+### run unit tests
+
+```
+    npm test
+```
+
+### run e2e tests
+
+```
+    npm run e2e
+```
 
 ### Структура файлов проекта
 
