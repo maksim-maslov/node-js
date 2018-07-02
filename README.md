@@ -26,15 +26,10 @@ Kitchen: [http://aqueous-forest-93594.herokuapp.com/#!/kitchen](http://aqueous-f
     http://localhost:3000
 ```
 
-### run unit tests
+### run tests
 
 ```
     npm test
-```
-
-### run e2e tests
-
-```
     npm run e2e
 ```
 
