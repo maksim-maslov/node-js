@@ -4,10 +4,11 @@
 
 Система автоматизации ресторана в рамках итоговой работы по курсу "Node, AngularJS и MongoDB: разработка полноценных веб-приложений".
 
-### Ссылки на рабочую версию
+Задание: [https://bitbucket.org/netology-university/drone-cafe/src/master/](https://bitbucket.org/netology-university/drone-cafe/src/master/)
 
-Client: [http://aqueous-forest-93594.herokuapp.com/#!/](http://aqueous-forest-93594.herokuapp.com/#!/)
-Kitchen: [http://aqueous-forest-93594.herokuapp.com/#!/kitchen](http://aqueous-forest-93594.herokuapp.com/#!/kitchen)
+Интерфейс клиента: [http://aqueous-forest-93594.herokuapp.com/#!/](http://aqueous-forest-93594.herokuapp.com/#!/)
+
+Интерфейс повара: [http://aqueous-forest-93594.herokuapp.com/#!/kitchen](http://aqueous-forest-93594.herokuapp.com/#!/kitchen)
 
 ### preinstall
 
