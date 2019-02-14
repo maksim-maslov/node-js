@@ -3,7 +3,7 @@
 }
 
 body {        
-  font: Arial, sans-serif; 
+  font-family: 'Roboto', sans-serif; 
   background-color: #fffde7;
   color: #333333;      
 }  
@@ -27,14 +27,24 @@ a {
 
 .row.list__title {
   border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+  font-weight: bold;
 }
 
 .row.list__item {
   padding: 20px;
-  border-radius: 2px;
+  border-radius: 5px;
 }
 
 .col.list-item__text {        
-  margin-bottom: 10px; 
+  padding: 0;  
+}
+
+.list-item__text {
   padding: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.col.list {
+  padding: 40px;
 }

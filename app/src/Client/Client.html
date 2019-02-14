@@ -15,19 +15,19 @@
 
 <div class="container" data-ng-if="isLogin">
   <div class="row">
-    <div class="col s3">
-      <h4 class="row list__title">Account</h4>
-      <h5 class="row">{{ user.name }}</h5>
-      <h5 class="row">{{ user.balance }} galactic credit</h5>
+    <div class="col s4 list">
+      <h5 class="row list__title">Account</h5>
+      <p class="row list-item__text">{{ user.name }}</p>
+      <p class="row list-item__text">{{ user.balance }} galactic credit</p>
       <div class="row">
         <button class="btn waves-effect waves-light col s10 orange darken-4" type="submit" data-ng-click="depositeAccount()">Deposit account</button>
       </div>
       </div> 
-      <div class="col s8 offset-s1"> 
-      <h4 class="row list__title">Orders</h4>  
+      <div class="col s8 list"> 
+      <h5 class="row list__title">Orders</h5>  
       <div class="row orange lighten-4 list__item" data-ng-repeat="dish in userOrders">
-        <h5 class="col s8 orange lighten-4">{{ dish.dishName }}</h5>
-        <h5 class="col s3 offset-s1 orange lighten-4 orange-text text-darken-2">{{ dish.status }}</h5>
+        <p class="col s8 orange lighten-4 list-item__text">{{ dish.dishName }}</h5>
+        <p class="col s3 offset-s1 orange lighten-4 orange-text text-darken-2 list-item__text">{{ dish.status }}</h5>
       </div>    
       <div class="row">
         <button class="btn waves-effect waves-light col s4 orange darken-4" type="submit" data-ng-click="showDishes()">Add dishes</button>
