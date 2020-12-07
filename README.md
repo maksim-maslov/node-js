@@ -19,7 +19,7 @@
 ### install
 
 ```
-    git clone https://github.com/maksim-maslov/nd-dp 
+    git clone https://github.com/maksim-maslov/node.js-DroneCafe 
     cd nd-dp
     npm install
     mongoimport --db DroneCafe --collection dishes --file menu.json --jsonArray
