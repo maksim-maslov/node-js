@@ -30,7 +30,7 @@ mongoose.connect(dbConfig.url, dbConnectionOptions, (err, database) => {
 });
 
 
-<<<<<<< HEAD
+
 // Отправляет код статуса 200
 //
 exports.openStartPage = function(req, res) {
@@ -39,8 +39,7 @@ exports.openStartPage = function(req, res) {
 
 
 
-=======
->>>>>>> 026b800d2a49b6da3feefe1723f8ae81a396c6ce
+
 // Находит клиента по имени и email 
 //
 
